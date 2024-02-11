@@ -25,6 +25,11 @@ function checkGuessNumber() {
     let inputNumber = convertInputType();
     if(inputNumber === generatedNumber) {
         message.innerHTML = `MATCHED SUCCESSFULLY :)`;
+        button.disabled = true;
+        input.disabled = true;
+        button.style.background = "grey";
+        button.style.cursor = "no-drop";
+        input.style.cursor = "no-drop";
     }
     else if(inputNumber > generatedNumber) {
         message.innerHTML = `You guesses it too Large`;
