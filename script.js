@@ -25,7 +25,6 @@ function checkGuessNumber() {
     let inputNumber = convertInputType();
     if(inputNumber === generatedNumber) {
         message.innerHTML = `MATCHED SUCCESSFULLY :)`;
-        console.log(`Random num ${generatedNumber}`);
     }
     else if(inputNumber > generatedNumber) {
         message.innerHTML = `You guesses it too Large`;
@@ -60,7 +59,6 @@ function chanceCounter() {
 
 // Work when button got clicked
 button.addEventListener("click", ()=>{
-    console.log(generatedNumber);
     let number = convertInputType();
     if(number <= 100) {
         checkGuessNumber();
