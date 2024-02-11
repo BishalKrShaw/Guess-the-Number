@@ -70,7 +70,7 @@ form input[type="text"]::placeholder{
     color: #919191;
 }
 
-form input[type="submit"]{
+form input[type="submit"], #playAgain{
     font-size: 1rem;
     padding: 0.5rem 2rem;
     background: var(--bgc-gradient);
@@ -86,5 +86,5 @@ form input[type="submit"]{
 }
 
 #chanceCount{
-    margin-top: 1rem;
+    margin: 1rem 0 2rem;
 }
