@@ -10,9 +10,9 @@ form.addEventListener("submit", (event)=>{
 const input = document.querySelector("form input[type='text']");
 const button = document.querySelector("form input[type='submit']");
 const message = document.querySelector("#displayMessage");
-let pastGuesses = document.querySelector("p #pastGuesses").innerHTML;
+let pastGuesses = document.querySelector("p #pastGuesses");
 let pastGuessesArr = [];
-let chanceCounterNumber = document.querySelector("#chanceCount span").innerHTML;
+let chanceCounterNumber = document.querySelector("#chanceCount span");
 
 // Convert input from String type to Number type
 function convertInputType() {
@@ -25,6 +25,7 @@ function checkGuessNumber() {
     let inputNumber = convertInputType();
     if(inputNumber === generatedNumber) {
         message.innerHTML = `MATCHED SUCCESSFULLY :)`;
+        console.log(`Random num ${generatedNumber}`);
     }
     else if(inputNumber > generatedNumber) {
         message.innerHTML = `You guesses it too Large`;
@@ -37,20 +38,37 @@ function checkGuessNumber() {
 // Record of past guesses
 function guessRecord() {
     pastGuessesArr.push(convertInputType());
-    pastGuesses = pastGuessesArr;
+    pastGuesses.innerHTML = pastGuessesArr;
 }
 
 // Counter of Chance
 function chanceCounter() {
-    if(chanceCounterNumber > 0) {
-        chanceCounterNumber--;
+    let counterNumber = parseInt(chanceCounterNumber.innerHTML);
+    if(counterNumber > 0) {
+        counterNumber--;
+        chanceCounterNumber.innerHTML = counterNumber;
+    }
+    else {
+        button.disabled = true;
+        input.disabled = true;
+        button.style.background = "grey";
+        button.style.cursor = "no-drop";
+        message.innerHTML = `Your Limit is Over!!`;
+        input.style.cursor = "no-drop";
     }
 }
 
 // Work when button got clicked
 button.addEventListener("click", ()=>{
-    checkGuessNumber();
-    guessRecord();
-    chanceCounter();
+    console.log(generatedNumber);
+    let number = convertInputType();
+    if(number <= 100) {
+        checkGuessNumber();
+        guessRecord();
+        chanceCounter();
+    }
+    else{
+        message.innerHTML = "Choose number between 0 - 100";
+    }
     input.value = "";
 });
